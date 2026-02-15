@@ -8,6 +8,9 @@ import type {
 } from 'storefrontapi.generated';
 import {ProductItem} from '~/components/ProductItem';
 
+// Custom Components
+import { Hero415 } from '~/components/custom/Hero415';
+
 export const meta: Route.MetaFunction = () => {
   return [{title: 'Hydrogen | Home'}];
 };
@@ -60,7 +63,8 @@ export default function Homepage() {
   const data = useLoaderData<typeof loader>();
   return (
     <div className="home">
-      <FeaturedCollection collection={data.featuredCollection} />
+      {/* <FeaturedCollection collection={data.featuredCollection} /> */}
+      <Hero415 />
       <RecommendedProducts products={data.recommendedProducts} />
     </div>
   );
