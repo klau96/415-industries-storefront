@@ -4,3 +4,9 @@
  */
 
 @import 'tailwindcss';
+
+@layer components {
+    h1 {
+        @apply font-light!
+    }
+}
