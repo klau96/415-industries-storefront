@@ -26,7 +26,7 @@ export function Header({
   const {shop, menu} = header;
   return (
     <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
+      <NavLink prefetch="intent" to="/" end>
         <strong>{shop.name}</strong>
       </NavLink>
       <HeaderMenu
@@ -61,7 +61,7 @@ export function HeaderMenu({
           end
           onClick={close}
           prefetch="intent"
-          style={activeLinkStyle}
+          className={activeLinkClass}
           to="/"
         >
           Home
@@ -79,12 +79,11 @@ export function HeaderMenu({
             : item.url;
         return (
           <NavLink
-            className="header-menu-item"
             end
             key={item.id}
             onClick={close}
             prefetch="intent"
-            style={activeLinkStyle}
+            className={activeLinkClass}
             to={url}
           >
             {item.title}
@@ -102,7 +101,7 @@ function HeaderCtas({
   return (
     <nav className="header-ctas" role="navigation">
       <HeaderMenuMobileToggle />
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
+      <NavLink prefetch="intent" to="/account">
         <Suspense fallback="Sign in">
           <Await resolve={isLoggedIn} errorElement="Sign in">
             {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
@@ -217,15 +216,23 @@ const FALLBACK_HEADER_MENU = {
   ],
 };
 
-function activeLinkStyle({
+function activeLinkClass({
   isActive,
   isPending,
 }: {
   isActive: boolean;
   isPending: boolean;
 }) {
-  return {
-    fontWeight: isActive ? 'bold' : undefined,
-    color: isPending ? 'grey' : 'black',
-  };
+  return `
+    transition-all
+
+    ${
+      isActive
+      ? 'font-bold text-blue-500' 
+      : 'font-mono'}
+    ${
+      isPending
+      ? 'text-gray-500'
+      : 'text-black' }`
+  ;
 }
