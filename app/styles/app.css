@@ -2,12 +2,30 @@
 
 @theme {
   --font-dm-mono: 'DM Mono', monospace;
+  --font-roboto-mono: 'Roboto Mono', monospace;
+  --font-monorama: 'Monorama', monospace;
 }
 
-@layer base {
+/* @layer base {
   body {
     font-family: 'DM Mono', monospace;
   }
+} */
+
+@font-face {
+  font-family: 'Monorama';
+  src: url('/fonts/Monorama/Monorama-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Monorama';
+  src: url('/fonts/Monorama/Monorama-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
 :root {

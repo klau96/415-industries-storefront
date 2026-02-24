@@ -26,8 +26,8 @@ export function Header({
   const {shop, menu} = header;
   return (
     <header className="header">
-      <NavLink prefetch="intent" to="/" end>
-        <strong>{shop.name}</strong>
+      <NavLink prefetch="intent" to="/" className="flex justify-start items-end" end>
+        <img className='h-16 hover:scale-120 transition-all ease-in-out duration-150' src='/gif/415-logo-black.gif' alt='415 logo 3d'></img>
       </NavLink>
       <HeaderMenu
         menu={menu}

@@ -67,6 +67,13 @@ export function links() {
       rel: 'stylesheet',
       href: 'https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap',
     },
+    {
+      rel: 'preload',
+      href: '/fonts/Monorama/Monorama-Bold.ttf',
+      as: 'font',
+      type: 'font/ttf', /* Changed from font/woff2 */
+      crossOrigin: 'anonymous',
+    },
   ];
 }
 
