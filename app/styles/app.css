@@ -4,11 +4,12 @@
   --font-dm-mono: 'DM Mono', monospace;
   --font-roboto-mono: 'Roboto Mono', monospace;
   --font-monorama: 'Monorama', monospace;
+  --font-harmonyos: 'HarmonyOS Sans', monospace;
 }
 
 /* @layer base {
   body {
-    font-family: 'DM Mono', monospace;
+    font-family: 'HarmonyOS Sans', monospace;
   }
 } */
 
@@ -23,6 +24,22 @@
 @font-face {
   font-family: 'Monorama';
   src: url('/fonts/Monorama/Monorama-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HarmonyOS Sans';
+  src: url('/fonts/HarmonyOS/HarmonyOS_Sans_Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HarmonyOS Sans';
+  src: url('/fonts/HarmonyOS/HarmonyOS_Sans_Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;

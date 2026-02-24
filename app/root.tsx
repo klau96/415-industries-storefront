@@ -69,7 +69,14 @@ export function links() {
     },
     {
       rel: 'preload',
-      href: '/fonts/Monorama/Monorama-Bold.ttf',
+      href: '/fonts/Monorama/Monorama-Medium.ttf',
+      as: 'font',
+      type: 'font/ttf', /* Changed from font/woff2 */
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      href: '/fonts/HarmonyOS/HarmonyOS-Sans-Bold.ttf',
       as: 'font',
       type: 'font/ttf', /* Changed from font/woff2 */
       crossOrigin: 'anonymous',
