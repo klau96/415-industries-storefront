@@ -20,6 +20,10 @@ import {PageLayout} from './components/PageLayout';
 
 export type RootLoader = typeof loader;
 
+// Imports for SplashScreen intro
+import { useState, useEffect } from 'react';
+import { SplashScreen } from './components/intro/SplashScreen';
+
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
  */
@@ -186,6 +190,22 @@ export function Layout({children}: {children?: React.ReactNode}) {
 export default function App() {
   const data = useRouteLoaderData<RootLoader>('root');
 
+  // INTRO 
+  const [showSplash, setShowSplash] = useState(true);
+  useEffect(() => {
+    // Use sessionStorage to make this a one-time occurrence on visit
+    const hasSeenSplash = sessionStorage.getItem('hasSeenSplash');
+    if (hasSeenSplash) {
+      setShowSplash(false);
+    }
+  }, []);
+
+  const handleSplashFinish = () => {
+    setShowSplash(false);
+    sessionStorage.setItem('hasSeenSplash', 'true');
+  };
+  
+
   if (!data) {
     return <Outlet />;
   }
@@ -196,6 +216,8 @@ export default function App() {
       shop={data.shop}
       consent={data.consent}
     >
+      {/* INTRO Splash */}
+      {showSplash && <SplashScreen finishLoading={handleSplashFinish}/>}
       <PageLayout {...data}>
         <Outlet />
       </PageLayout>
