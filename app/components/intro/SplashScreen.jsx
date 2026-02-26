@@ -31,27 +31,48 @@ export function SplashScreen({ finishLoading }) {
   return (
     <div
       className={`
-        fixed inset-0 z-9999 flex items-center justify-center bg-black
-        transition-opacity duration-700 ease-in-out
+        fixed inset-0 z-9999 flex items-center justify-center
+        transition-all duration-500 ease-in-out
         hover:cursor-pointer
-        ${animateOut ? 'opacity-0 pointer-events-none' : 'opacity-100'}
+        ${animateOut ? 'opacity-0 blur-lg pointer-events-none' : 'bg-white'}
       `}
     >
       <div className="text-center">
         {/* YOUR LOGO / TEXT HERE */}
-        <h1 
+        <div className='w-64 h-auto'>
+          <img className={`
+        transition-all duration-500 transform w-full h-full
+        ${
+          isMounted
+          ? 'translate-y-0 blur-0 opacity-100'
+          : 'translate-y-10 opacity-0 blur-0'
+        }
+          `} src='/gif/415-logo-black.gif'>
+          </img>
+        </div>
+        
+        <h1
           className={`
-            text-6xl font-bold text-white tracking-widest uppercase
-            transition-all duration-1000 transform
-            ${isMounted ? 'translate-y-0 opacity-100 blur-0' : 'translate-y-10 opacity-0 blur-sm'}
+            text-6xl font-bold text-black tracking-widest uppercase
+            transition-all duration-500 transform
+            ${
+              isMounted 
+              ? 'translate-y-0 opacity-100 blur-0' 
+              : 'translate-y-10 opacity-0 blur-sm'
+            }
           `}
         >
           415 Industries
         </h1>
         
         {/* Optional Loading Bar */}
-        <div className="mt-4 h-1 w-32 bg-gray-800 mx-auto rounded overflow-hidden">
-          <div className="h-full bg-white animate-[loading_2s_ease-in-out_infinite]" />
+        <div className={`mt-2 h-1 w-auto bg-gray-800 mx-auto rounded overflow-hidden
+          ${
+            isMounted 
+            ? 'translate-y-0 opacity-100 blur-0' 
+            : 'translate-y-10 opacity-0 blur-sm'
+          }`}>
+          <div className={`h-full bg-black animate-[loading_2s_ease-in-out_infinite]`} />
         </div>
       </div>
     </div>

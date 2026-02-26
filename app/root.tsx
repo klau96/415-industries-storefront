@@ -191,20 +191,19 @@ export default function App() {
   const data = useRouteLoaderData<RootLoader>('root');
 
   // INTRO 
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState<boolean | null>(null);
   useEffect(() => {
-    // Use sessionStorage to make this a one-time occurrence on visit
-    const hasSeenSplash = sessionStorage.getItem('hasSeenSplash');
-    if (hasSeenSplash) {
-      setShowSplash(false);
-    }
+    const hasSeen = sessionStorage.getItem('hasSeenSplash');
+    setShowSplash(!hasSeen);
   }, []);
 
   const handleSplashFinish = () => {
-    setShowSplash(false);
     sessionStorage.setItem('hasSeenSplash', 'true');
+    setShowSplash(false);
   };
-  
+  if (showSplash === null){
+    return <div className='fixed inset-0 bg-white'></div>
+  }
 
   if (!data) {
     return <Outlet />;
@@ -216,11 +215,16 @@ export default function App() {
       shop={data.shop}
       consent={data.consent}
     >
+      <div className={`
+          transition-all duration-700 ease-out
+          ${showSplash ? 'blur-lg scale-[1.02]' : 'blur-0 scale-100'}`
+        }>
+        <PageLayout {...data}>
+          <Outlet />
+        </PageLayout>
+      </div>
       {/* INTRO Splash */}
       {showSplash && <SplashScreen finishLoading={handleSplashFinish}/>}
-      <PageLayout {...data}>
-        <Outlet />
-      </PageLayout>
     </Analytics.Provider>
   );
 }
